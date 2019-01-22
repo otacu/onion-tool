@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>关联查询数据库</title>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+
+        });
+
+        function upload() {
+            if (checkData()) {
+                $('#uploadForm').submit();
+            }
+        }
+
+        //JS校验form表单信息
+        function checkData() {
+            var fileDir = $("#upfile").val();
+            var suffix = fileDir.substr(fileDir.lastIndexOf("."));
+            if ("" == fileDir) {
+                alert("选择需要导入的Excel文件！");
+                return false;
+            }
+            if (".xls" != suffix && ".xlsx" != suffix) {
+                alert("选择Excel格式的文件导入！");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+
+    <style>
+        /*.btn{width: 100px;height:30px;text-align: center;font-size: 14px;line-height:22px;}*/
+        .file {
+            border: 1px solid #99D3F5;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #040404;
+        }
+
+        th, td {
+            border: 1px solid #040404;
+            color: #404060;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #fff;
+        }
+
+        td {
+            font: 14px "微软雅黑";
+        }
+
+        tbody tr {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+
+<form id="uploadForm" enctype="multipart/form-data" action="relationalquery/upload" method="post" style="margin:0px;display:inline;">
+    <input class="file" id="upfile" type="file" name="upfile"/>
+    <button onclick="upload()" class="btn">导&nbsp;入
+    </button>
+</form>
+
+</body>
+
+</html>
