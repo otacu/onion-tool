@@ -78,6 +78,7 @@ public class RelationalQueryService {
 
             return this.exportExcel(allResultList);
         } catch (Exception e) {
+            e.printStackTrace();
             return new EgoistResult(400, "关联查询异常", null);
         }
     }
