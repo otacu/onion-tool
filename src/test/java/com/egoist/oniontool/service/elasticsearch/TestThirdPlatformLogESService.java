@@ -1,7 +1,7 @@
 package com.egoist.oniontool.service.elasticsearch;
 
 import com.alibaba.fastjson.JSON;
-import com.egoist.oniontool.common.constants.OnionConstant;
+import com.egoist.parent.common.constants.EgoistNumberConstant;
 import com.egoist.parent.pojo.dto.EgoistResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +22,8 @@ public class TestThirdPlatformLogESService {
     @Test
     public void testQueryThirdPlatformLog() throws InterruptedException {
         // 表中前面11897条记录没有detail记录，如果不加日期范围，就从119页开始
-        int pageNum = OnionConstant.ONE;
-        int pageSize = OnionConstant.ONE_HUNDRED;
+        int pageNum = EgoistNumberConstant.ONE;
+        int pageSize = EgoistNumberConstant.ONE_HUNDRED;
         EgoistResult result = thirdPlatformLogESService.rebuildIndex(pageNum, pageSize);
         System.out.println(JSON.toJSONString(result));
     }

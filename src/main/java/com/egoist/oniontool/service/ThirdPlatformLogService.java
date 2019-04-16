@@ -1,7 +1,7 @@
 package com.egoist.oniontool.service;
 
-import com.egoist.oniontool.common.constants.MessageConstants;
-import com.egoist.oniontool.common.constants.OnionConstant;
+import com.egoist.oniontool.common.constant.MessageConstant;
+import com.egoist.oniontool.common.constant.OnionConstant;
 import com.egoist.oniontool.common.enums.ThirdPlatformEnum;
 import com.egoist.oniontool.common.enums.ThirdPlatformLogMsgTypeEnum;
 import com.egoist.oniontool.dao.ThirdPlatformLogDetailMapper;
@@ -96,7 +96,7 @@ public class ThirdPlatformLogService {
         } catch (Exception e) {
             egoistPagingResult.setStatus(EgoistResultStatusConstants.STATUS_400);
             egoistPagingResult.setMsg("查询第三方日志数据异常");
-            log.error(String.format(MessageConstants.QUERY_THIRD_PLATFORM_LOG_DOC_ERROR, e.getMessage()), e);
+            log.error(String.format(MessageConstant.QUERY_THIRD_PLATFORM_LOG_DOC_ERROR, e.getMessage()), e);
         }
         return egoistPagingResult;
     }
