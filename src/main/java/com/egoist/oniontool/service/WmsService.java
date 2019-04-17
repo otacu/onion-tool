@@ -10,6 +10,7 @@ import com.egoist.oniontool.common.util.MD5Util;
 import com.egoist.oniontool.common.util.ParseUtil;
 import com.egoist.oniontool.pojo.wms.Header;
 import com.egoist.oniontool.pojo.wms.QueryTypeStockRequest;
+import com.egoist.oniontool.pojo.wms.SaleOrderQueryRequest;
 import com.egoist.oniontool.pojo.wms.WmsRequest;
 import com.egoist.parent.common.constants.EgoistResultStatusConstants;
 import com.egoist.parent.common.exception.EgoistException;
@@ -33,6 +34,7 @@ public class WmsService {
 
     /**
      * 根据条码查询库存
+     *
      * @param request
      * @return
      */
@@ -59,7 +61,35 @@ public class WmsService {
         }
     }
 
-    protected TreeMap<String, Object> signMap(WmsRequest request)
+    /**
+     * 查询订单出库状态
+     *
+     * @param request
+     * @return
+     */
+    EgoistResult querySaleOrderOut(SaleOrderQueryRequest request) {
+        try {
+            String domainUrl = WmsParamConstant.HK_DOMAIN_URL;
+            if (WmsServerEnum.GUANG_ZHOU.equals(request.getServerType())) {
+                domainUrl = WmsParamConstant.GZ_DOMAIN_URL;
+            }
+            request.setVersion(WmsPathConstant.VERSION);
+            TreeMap<String, Object> paramMap = signMap(request);
+            JSONObject returnObject = null;
+            log.info(String.format("请求报文：%s", JSONObject.toJSONString(paramMap)));
+            try {
+                returnObject = EgoistOkHttp3Util.postFormBody(domainUrl, paramMap);
+                log.info(String.format("响应报文：%s", returnObject.toJSONString()));
+            } catch (Exception e) {
+                throw new EgoistException("请求失败");
+            }
+            return EgoistResult.ok();
+        } catch (EgoistException e) {
+            return new EgoistResult(EgoistResultStatusConstants.STATUS_400, e.getMessage(), null);
+        }
+    }
+
+    private TreeMap<String, Object> signMap(WmsRequest request)
             throws EgoistException {
         String jsonEncoding = JSONObject.toJSONString(request);
         Long timestamp = System.currentTimeMillis();
