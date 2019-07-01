@@ -22,8 +22,9 @@ public class TestWmsService {
     @Test
     public void testQueryThirdPlatformLog() {
         QueryTypeStockRequest request = new QueryTypeStockRequest();
-        request.setCusgoodsno("4901872035663");
+        request.setCusgoodsno("2016022200002");
         request.setServerType(WmsServerEnum.HONG_KONG);
+        request.setCuscode("YT");
         EgoistResult result = wmsService.querySkuStock(request);
 //        System.out.println(JSON.toJSONString(result));
     }
@@ -34,8 +35,8 @@ public class TestWmsService {
     @Test
     public void testQuerySaleOrderOut() {
         SaleOrderQueryRequest request = new SaleOrderQueryRequest();
-        request.setCusbillno("CF2019040300878258188A026");
-        request.setServerType(WmsServerEnum.HONG_KONG);
+        request.setCusbillno("XP0019062718200244789093001598");
+        request.setServerType(WmsServerEnum.GUANG_ZHOU);
         EgoistResult result = wmsService.querySaleOrderOut(request);
 //        System.out.println(JSON.toJSONString(result));
     }

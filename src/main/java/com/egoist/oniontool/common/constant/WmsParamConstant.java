@@ -11,7 +11,7 @@ public final class WmsParamConstant {
 
     public static final String HK_SITECODE = "88801";
 
-    public static final String GZ_SITECODE = "88806";
+    public static final String GZ_SITECODE = "88805";
 
     public static final String HK_DOMAIN_URL="http://119.28.53.37:8080/x2oms/x2wms/api/index.do";
 

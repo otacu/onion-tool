@@ -40,7 +40,6 @@ public class WmsService {
      */
     public EgoistResult querySkuStock(QueryTypeStockRequest request) {
         try {
-            request.setCuscode(WmsParamConstant.CUSTOMER_CODE);
             request.setOuttype(WmsConstant.SALE_OUT_TYPE_002001);
             String domainUrl = WmsParamConstant.HK_DOMAIN_URL;
             if (WmsServerEnum.GUANG_ZHOU.equals(request.getServerType())) {
